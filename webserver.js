@@ -1,8 +1,9 @@
 // expressライブラリの読み込み
 const express = require("express");
 const app = express();
-// ローカルホストのポート
-const webPort = 3000;
+// ホストのポート
+// const webPort = 3000;
+const webPort = 80;
 
 // POSTメソッドによるJSON形式のデータを取得するためのミドルウェア
 app.use(express.json());
@@ -11,8 +12,8 @@ app.use(express.urlencoded({
 }));
 
 // TCPサーバー（tcpserber.js）の設定、モジュールの読み込み
-const tcpPort = 1515;
-const tcpServer = require("./tcpserver.js");
+const tcpPort = 1500;
+const tcpServer = require("./tcpServer.js");
 tcpServer.relayServer(tcpPort);
 
 // TCPサーバー（tcpserver.js）とlocalhostの通信設定

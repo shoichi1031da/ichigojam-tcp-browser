@@ -1,0 +1,3 @@
+'IPAddressにはローカルホストもしくはwebサーバーのIPアドレス、PortはTCP用のポートを入力
+
+10 ?"MJ TCP IPAddress Port"

@@ -1,7 +1,7 @@
 // TCPサーバーを起動するためのnetライブラリの読み込み
 const net = require("net");
 const tcpServer = net.createServer();
-const tcpPort = 1515;
+const tcpPort = 1500;
 
 // クライアントの情報を配列で管理する
 const clients = [];
