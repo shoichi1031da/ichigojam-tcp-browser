@@ -5,10 +5,10 @@ const tcpPort = 1500;
 
 // クライアントの情報を配列で管理する
 const clients = [];
-//clients[0]:localhost
+//clients[0]:host
 //clients[1]:IchigoJam
 
-// Webサーバー（webserver.js）にエクスポート
+// Webサーバー（webServer.js）にエクスポート
 exports.relayServer = (tcpPort) => {
     
     // クライアントからTCP接続した時の処理
@@ -17,7 +17,7 @@ exports.relayServer = (tcpPort) => {
         // 1台目のクライアントがした時
         if(clients.length == 0){
             clients.push(socket);
-            console.log("localhost is conected.")
+            console.log("host is conected.")
             console.log("Wait IchigoJam connection...");
         // 2台目のクライアントが接続した時
         }else if(clients.length == 1){
@@ -32,22 +32,24 @@ exports.relayServer = (tcpPort) => {
         // クライアントからデータを受信した時
         socket.on("data", (data) => {
             let DATA = data.toString();
+
+            //データの送信先がない時
+            if(clients.length == 1) return true;
             
             // 送信元がブラウザの時
             if(socket == clients[0]){
                 clients[1].write(DATA + "\n");
-                console.log("localhost > " + DATA);
+                console.log("host > " + DATA);
             // 送信元がIchigoJamの時
             }else{
                 console.log("IchigoJam > " + DATA);
             }
+       });
 
-       })
+    });
 
-    })
-
-    tcpServer.listen(tcpPort,() => {
-        console.log(`listening on ${tcpPort}`);
+    tcpServer.listen(tcpPort, () => {
+        console.log(`listening on tcp server ${tcpPort}`);
     });
 
 }
