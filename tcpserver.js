@@ -1,12 +1,11 @@
-// TCPサーバーを起動するためのnetライブラリの読み込み
 const net = require("net");
 const tcpServer = net.createServer();
 const tcpPort = 1500;
 
 // クライアントの情報を配列で管理する
 const clients = [];
-//clients[0]:host
-//clients[1]:IchigoJam
+// clients[0]:host
+// clients[1]:IchigoJam
 
 // Webサーバー（webServer.js）にエクスポート
 exports.relayServer = (tcpPort) => {
@@ -14,11 +13,11 @@ exports.relayServer = (tcpPort) => {
     // クライアントからTCP接続した時の処理
     tcpServer.on("connection", (socket) => {
         
-        // 1台目のクライアントがした時
+        // 1台目のクライアントが接続した時
         if(clients.length == 0){
             clients.push(socket);
             console.log("host is conected.")
-            console.log("Wait IchigoJam connection...");
+            console.log("wait IchigoJam connection...");
         // 2台目のクライアントが接続した時
         }else if(clients.length == 1){
             clients.push(socket);
@@ -27,6 +26,7 @@ exports.relayServer = (tcpPort) => {
         // 3台目以上のクライアントが接続しようとした時
         }else {
             console.log("aleady to conected...");
+            socket.write("'another ichigojam alrady conected...\n");
         }
 
         // クライアントからデータを受信した時

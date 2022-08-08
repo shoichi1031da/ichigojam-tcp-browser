@@ -1,3 +1,4 @@
-'IPAddressにはローカルホストもしくはwebサーバーのIPアドレス、PortはTCP用のポートを入力
-
 10 ?"MJ TCP IPAddress Port"
+
+'IPAddressにはローカルホストもしくはwebサーバーのIPアドレス、PortはTCP用のポートを入力。
+'TCPコマンドの詳細はMixJuice公式サイトからご確認ください。

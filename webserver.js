@@ -1,7 +1,6 @@
-// expressライブラリの読み込み
+// フレームワーク（express）の読み込み
 const express = require("express");
 const app = express();
-// ホストのポート
 const webPort = 3000;
 
 // POSTメソッドによるJSON形式のデータを取得するためのミドルウェア
@@ -15,7 +14,7 @@ const tcpPort = 1500;
 const tcpServer = require("./tcpServer.js");
 tcpServer.relayServer(tcpPort);
 
-// TCPサーバー（tcpServer.js）とlocalhostの通信設定
+// TCPサーバー（tcpServer.js）とクライアント（host）の接続
 const net = require("net");
 const client = new net.Socket();
 client.connect(tcpPort,"localhost");
@@ -27,11 +26,8 @@ app.get("/", (req,res) => {
 
 // ブラウザからのPOSTリクエストに対する処理
 app.post("/", (req,res) => {
-    // formタグ内のテキストエリア（name="code"）内のテキストデータの取得
     const code = req.body.code;
-    // TCPサーバー（tcpserver.js）に渡す
     client.write(code);
-    // ブラウザ再読み込み
     res.sendFile(__dirname + "/index.html");
 })
 
