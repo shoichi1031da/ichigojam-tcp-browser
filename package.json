@@ -1,0 +1,18 @@
+{
+  "name": "ichigojam-browser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "web": "nodemon webserver.js",
+    "tcp": "nodemon tcpserver.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "net": "^1.0.2",
+    "nodemon": "^2.0.19"
+  }
+}
